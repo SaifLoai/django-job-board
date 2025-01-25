@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 import os
 from uuid import uuid4
+from django.contrib.auth.models import User
 # Create your models here.
 
 JOB_TYPE = (
@@ -23,6 +24,7 @@ def image_upload(instance,filename):
     return os.path.join(upload_to, filename)
 
 class Job (models.Model): #table for db
+    owner = models.ForeignKey(User, related_name='job_owner', on_delete=models.CASCADE) # type: ignore
     title = models.CharField(max_length=120) #column
     #location
     job_type = models.CharField(max_length=15 , choices=JOB_TYPE)
