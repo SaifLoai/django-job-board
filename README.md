@@ -1,2 +1,2 @@
-# django-job-board
+# django job board
 ## write by saif
